@@ -2,17 +2,17 @@ import React from 'react';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
-import {Typography, Grid } from '@material-ui/core';
-import {Box} from '@mui/material';
+import { Typography, Grid } from '@material-ui/core';
+import { Box } from '@mui/material';
 
 function Footer() {
     return (
         <>
             <Grid container direction="row" justifyContent="center" alignItems="center">
                 <Grid alignItems="center" item xs={12}>
-                    <Box style={{ backgroundColor: "#826610", height: "120px" }}>
+                    <Box style={{ backgroundColor: "#000000", height: "150px" }}>
                         <Box paddingTop={1} display="flex" alignItems="center" justifyContent="center">
-                            <Typography variant="h5" align="center" gutterBottom style={{ color: "white" }}>Siga-nos nas redes sociais </Typography>
+                            <Typography variant="h5" align="center" gutterBottom style={{ color: "white" }}>Segue nóis e da uma força! </Typography>
                         </Box>
                         <Box display="flex" alignItems="center" justifyContent="center">
                             <a href="https://www.facebook.com/generationbrasil" target="_blank">
@@ -21,15 +21,11 @@ function Footer() {
                             <a href="https://www.instagram.com/generationbrasil/" target="_blank">
                                 <InstagramIcon style={{ fontSize: 60, color: "white" }} />
                             </a>
-                        </Box>
-                    </Box>
-                    <Box style={{ backgroundColor: "#852B0D", height: "60px" }}>
-                        <Box paddingTop={1}>
-                            <Typography variant="subtitle2" align="center" gutterBottom style={{ color: "white" }} >© 2020 Copyright:</Typography>
+
                         </Box>
                         <Box>
-                            <a target="_blank" href="https://brasil.generation.org">
-                                <Typography variant="subtitle2" gutterBottom style={{ color: "white" }} align="center">brasil.generation.org</Typography>
+                            <a target="_blank" href="">
+                                <Typography variant="subtitle2" align="center" gutterBottom style={{ color: "white" }} >© 2023 Copyright</Typography>
                             </a>
                         </Box>
                     </Box>

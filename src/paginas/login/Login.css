@@ -1,0 +1,23 @@
+.imagemLogin{
+    background-image: url('./../../assets/Imagem/foto4.jpg');
+    min-height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.botao{
+    background-color: #4B0000 !important;
+}
+
+.sublinhado {
+    text-decoration: none;
+}
+
+.botao:hover {
+    background-color: #000000 !important;
+    transition: 0.5s;
+}
+
+.barraLog {
+    background-color: grey;
+}

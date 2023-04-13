@@ -11,7 +11,7 @@ function Navbar (){
     return (
         <>
         <Box sx={{ flexGrow: 1 }} >
-        <AppBar position="static" style={{ backgroundColor: "#852B0D"}}>
+        <AppBar position="static" style={{ backgroundColor: "#000000"}}>
             <Toolbar>
             <IconButton
                 size="large"
@@ -22,8 +22,8 @@ function Navbar (){
             >
                 <MenuIcon />
             </IconButton>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} style={{fontSize: 20, fontStyle:'italic'}}>
-                Film Lovers
+            <Typography variant="h6" component="div"  align="center" sx={{ flexGrow: 1 }} style={{fontSize: 20, fontStyle:'italic'}}>
+                CINÉFILOS ANÔNIMOS
             </Typography>
             <Button color="inherit" style={{fontSize: 12, fontStyle:'italic'}}>Login</Button>
             </Toolbar>
