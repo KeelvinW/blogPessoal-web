@@ -1,0 +1,14 @@
+.text-decorator-none {
+    text-decoration: none;
+}
+
+.style{
+    font-size: 15;
+    display: flex;
+    color: white !important;
+    align-items: center;
+}
+
+.logobarra{
+
+}
