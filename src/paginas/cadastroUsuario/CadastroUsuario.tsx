@@ -41,7 +41,7 @@ function CadastroUsuario() {
 
     async function onSubmit(event: ChangeEvent<HTMLFormElement>) {
         event.preventDefault();
-        if (confirmarSenha === usuario.senha) {
+        if (confirmarSenha === usuario.senha && usuario.senha.length >= 8) {
             try {
                 await cadastroUsuario(
                     "/usuarios/cadastrar",
