@@ -7,13 +7,17 @@ import useLocalStorage from 'react-use-localstorage';
 import { api } from '../../service/Service';
 import onSubmit from 'react';
 import "./Login.css"
+import { useDispatch } from 'react-redux';
+import { addToken } from '../../store/tokens/actions';
+import { toast } from 'react-toastify';
 
 function Login() {
 
     const history = useNavigate()
-    // let history = useHistory();
 
-    const [token, setToken] = useLocalStorage('token');
+    const dispatch = useDispatch();
+
+    const [token, setToken] = useState('');
 
     const [userLogin, setUserLogin] = useState<UsuarioLogin>({
         id: 0,
@@ -27,27 +31,53 @@ function Login() {
         setUserLogin({
             ...userLogin,
             [event.target.name]: event.target.value
-        })
+        });
+    }
+
+    async function onSubmit(event: ChangeEvent<HTMLFormElement>) {
+        event.preventDefault();
+        try {
+            // await login("/usuarios/logar", userLogin, setRespUserLogin);
+            await login("/usuarios/logar", userLogin, setToken);
+            toast.success("Usuario logado com sucesso", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+        } catch (error) {
+            console.log(error);
+            toast.error("Usuário ou senha inválidos!", {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+        }
     }
 
     useEffect(() => {
-        if(token != ''){
-            history('/home')
+        if (token !== "") {
+            dispatch(addToken(token));
+            history("/home");
         }
-    }, [token])
+    }, [token]);
 
-    async function onSubmit(event: ChangeEvent<HTMLFormElement>) {
-        event.preventDefault()
-        try {
-            await login('/usuarios/logar', userLogin, setToken)
-        
-            alert('Usuario cadastrado com sucesso')
-            // history('/home')
-        } catch (error) {
-            console.log(error);
-            alert('Usuário ou senha inválidos')
-        }
-    }
+    // useEffect(() => {
+    //     if (respUserLogin.token !== "") {
+    //         dispatch(addToken(respUserLogin.token));
+    //         dispatch(addId(respUserLogin.id.toString()));
+    //         history("/home");
+    //     }
+    // }, [respUserLogin.token]);
 
     return (
         <>
@@ -62,7 +92,7 @@ function Login() {
                                 label='Usuário'
                                 name='usuario'
                                 value={userLogin.usuario}
-                                onChange={(event: ChangeEvent<HTMLInputElement>) => updateModel(event)} 
+                                onChange={(event: ChangeEvent<HTMLInputElement>) => updateModel(event)}
                                 margin='normal'
                                 // className='barraLog'
                                 fullWidth />
@@ -72,17 +102,17 @@ function Login() {
                                 label='Senha'
                                 name='senha'
                                 value={userLogin.senha}
-                                onChange={(event: ChangeEvent<HTMLInputElement>) => updateModel(event)} 
+                                onChange={(event: ChangeEvent<HTMLInputElement>) => updateModel(event)}
                                 margin='normal'
                                 // className='barraLog'
                                 type='password'
                                 fullWidth />
                             <Box marginTop={2} textAlign='center'>
-                                
-                                    <Button type='submit' className='botao' variant='contained' fullWidth>
-                                        Logar
-                                    </Button>
-                                
+
+                                <Button type='submit' className='botao' variant='contained' fullWidth>
+                                    Logar
+                                </Button>
+
                             </Box>
                         </form>
                         <Box display='flex' justifyContent='center' marginTop={2}>
@@ -92,9 +122,9 @@ function Login() {
                                 </Typography>
                             </Box>
                             <Link to='/cadastrousuario'>
-                            <Typography variant='subtitle1' gutterBottom align='center' style={{ fontWeight: 'bold' }}>
-                                Cadastre-se
-                            </Typography>
+                                <Typography variant='subtitle1' gutterBottom align='center' style={{ fontWeight: 'bold' }}>
+                                    Cadastre-se
+                                </Typography>
                             </Link>
                         </Box>
                     </Box>

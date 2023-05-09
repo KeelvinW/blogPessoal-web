@@ -1,10 +1,38 @@
-import React from 'react';
-import {Typography, Grid, Button} from '@material-ui/core';
-import {Box} from '@mui/material';
+import React, { useEffect } from 'react';
+import { Typography, Grid, Button } from '@material-ui/core';
+import { Box } from '@mui/material';
 import './Home.css';
 import TabPostagem from '../../components/postagens/tabpostagem/TabPostagem';
+import ModalPostagem from '../../components/postagens/modalPostagem/ModalPostagem';
+import { useNavigate, Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { TokenState } from '../../store/tokens/tokensReducer';
+import { toast } from 'react-toastify';
 
 function Home() {
+
+    const history = useNavigate();
+
+    const token = useSelector<TokenState, TokenState["token"]>(
+        (state) => state.token
+    );
+
+    useEffect(() => {
+        if (token == "") {
+            toast.error("Você precisa estar logado!", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+            history("/login");
+        }
+    }, [token]);
+
     return (
         <>
             <Grid container direction="row" justifyContent="center" alignItems="center" style={{ backgroundColor: "#7D0000" }}>
@@ -15,8 +43,11 @@ function Home() {
                     </Box>
                     <Box display="flex" justifyContent="center">
                         <Box marginRight={1}>
+                            <ModalPostagem />
                         </Box>
-                        <Button variant="outlined" style={{ borderColor: "white", backgroundColor: "#000000", color: "white" }}>Ver Postagens</Button>
+                        <Link to="/postagens" className='text-decorator-none estilo-ver-postagem'>
+                            <Button variant="outlined">Ver Postagens</Button>
+                        </Link>
                     </Box>
                 </Grid>
                 <Grid item xs={6} >

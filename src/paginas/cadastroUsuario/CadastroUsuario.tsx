@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Usuario from '../../models/Usuario';
 import { cadastroUsuario } from "../../service/Service";
 import './CadastroUsuario.css'
+import { toast } from 'react-toastify';
 
 function CadastroUsuario() {
 
@@ -48,12 +49,39 @@ function CadastroUsuario() {
                     usuario,
                     setUsuarioResult
                 );
-                alert("Usuário cadastrado com sucesso");
+                toast.success("Usuário cadastrado com sucesso", {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                });
             } catch (error) {
-                alert("Por favor, verificar cadastro!");
+                toast.error("Dados inconsistentes. Verifique as informações de cadastro!", {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                });
             }
         } else {
-            alert("Usuário ou senha inválidos");
+            toast.error("As senhas não coincidem!", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
             setConfirmarSenha("");
             setUsuario({
                 ...usuario,
@@ -61,6 +89,7 @@ function CadastroUsuario() {
             });
         }
     }
+
 
     useEffect(() => {
         if (usuarioResult.id !== 0) {

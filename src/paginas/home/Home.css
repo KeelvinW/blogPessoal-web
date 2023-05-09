@@ -4,3 +4,13 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+.text-decorator-none {
+    text-decoration: none;
+}
+
+.estilo-ver-postagem {
+    border-color: white;
+    background-color: #000000;
+    color: white; 
+}
